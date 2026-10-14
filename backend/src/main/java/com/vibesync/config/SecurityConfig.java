@@ -55,18 +55,19 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
             // Define which routes require authentication
-            .authorizeHttpRequests(auth -> auth
-                .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/api/auth/**").permitAll()      // login + register: always open
-                .requestMatchers(HttpMethod.GET, "/api/songs", "/api/songs/**").permitAll()
-                .requestMatchers("/api/weather/**").permitAll()   // weather: open
-                .requestMatchers(HttpMethod.POST, "/api/songs", "/api/songs/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/songs", "/api/songs/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/songs", "/api/songs/**").hasRole("ADMIN")
-              .requestMatchers("/api/admin/**").hasRole("ADMIN")
-              .requestMatchers("/").permitAll()
-              .anyRequest().authenticated()
+     .authorizeHttpRequests(auth -> auth
+    .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
+    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+    .requestMatchers("/api/auth/**").permitAll()
+    .requestMatchers(HttpMethod.GET, "/api/songs", "/api/songs/**").permitAll()
+    .requestMatchers("/api/weather/**").permitAll()
+    .requestMatchers(HttpMethod.POST, "/api/songs", "/api/songs/**").hasRole("ADMIN")
+    .requestMatchers(HttpMethod.PUT, "/api/songs", "/api/songs/**").hasRole("ADMIN")
+    .requestMatchers(HttpMethod.DELETE, "/api/songs", "/api/songs/**").hasRole("ADMIN")
+    .requestMatchers("/api/admin/**").hasRole("ADMIN")
+    .requestMatchers("/").permitAll()
+    .anyRequest().authenticated()
+)
 
             // Use stateless sessions — no server-side sessions, token carries identity
             .sessionManagement(session ->
