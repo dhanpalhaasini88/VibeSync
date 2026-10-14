@@ -4,7 +4,7 @@
 import axios from 'axios'
 
 // Base URL for all backend requests
-const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8081'
+const apiBaseUrl = import.meta.env.VITE_API_URL || 'https://vibesync-1-kq5k.onrender.com'
 
 const api = axios.create({
   baseURL: apiBaseUrl.replace(/\/$/, ''),
