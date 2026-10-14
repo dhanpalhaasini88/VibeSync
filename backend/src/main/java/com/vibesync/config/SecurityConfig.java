@@ -64,9 +64,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/songs", "/api/songs/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/songs", "/api/songs/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/songs", "/api/songs/**").hasRole("ADMIN")
-               .requestMatchers("/api/admin/**").hasRole("ADMIN")
-.anyRequest().authenticated()                     // everything else needs JWT
-            )
+              .requestMatchers("/api/admin/**").hasRole("ADMIN")
+              .requestMatchers("/").permitAll()
+              .anyRequest().authenticated()
 
             // Use stateless sessions — no server-side sessions, token carries identity
             .sessionManagement(session ->
